@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView,StatusBar} from 'react-native';
+import ProductScreen from './src/screens/ProductScreen';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{
+      flex: 1,
+      justifyContent: 'center',
+      }}>
+      <StatusBar  
+        barStyle={'dark-content'}
+        backgroundColor= "rgba(52, 52, 52, 0.0)"
+      />
+      <ProductScreen/>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
