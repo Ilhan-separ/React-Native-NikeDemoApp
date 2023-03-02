@@ -1,19 +1,20 @@
-import { SafeAreaView,StatusBar} from 'react-native';
-import ProductScreen from './src/screens/ProductScreen';
+import { SafeAreaView, StatusBar } from "react-native";
+import ProductScreen from "./src/screens/ProductScreen";
+import DetailsScreen from "./src/screens/DetailsScreen";
 
 export default function App() {
   return (
-    <SafeAreaView style={{
-      flex: 1,
-      justifyContent: 'center',
-      }}>
-      <StatusBar  
-        barStyle={'dark-content'}
-        backgroundColor= "rgba(52, 52, 52, 0.0)"
+    <SafeAreaView
+      style={{
+        flex: 1,
+      }}
+    >
+      <StatusBar
+        barStyle={"dark-content"}
+        backgroundColor="rgba(255, 255, 255, 1)"
       />
-      <ProductScreen/>
+      {/* <ProductScreen/> */}
+      <DetailsScreen />
     </SafeAreaView>
   );
 }
-
-
