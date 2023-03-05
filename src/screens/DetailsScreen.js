@@ -12,8 +12,11 @@ import products from "../data/products";
 import { normalize } from "../utils/scales";
 import { Ionicons } from "@expo/vector-icons";
 import { useCallback, useEffect, useRef, useState } from "react";
+import CustomButton from "../components/button";
+import { useNavigation } from "@react-navigation/native";
 
 const DetailsScreen = () => {
+  const navigation = useNavigation();
   const product = products[0];
 
   const { width } = useWindowDimensions();
@@ -91,12 +94,12 @@ const DetailsScreen = () => {
           <Text style={styles.description}>{product.description}</Text>
         </View>
       </ScrollView>
-      <Pressable onPress={addToCard} style={styles.button}>
-        <Text style={styles.buttonText}>Add to cart</Text>
-      </Pressable>
-      <Pressable style={styles.icon}>
+
+      <Pressable onPress={() => navigation.goBack()} style={styles.icon}>
         <Ionicons name="close" size={24} color="white" />
       </Pressable>
+
+      <CustomButton text={"Add to Cart"} onPressed={addToCard} />
     </View>
   );
 };
@@ -139,28 +142,11 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     marginBottom: normalize(50),
   },
-  button: {
-    position: "absolute",
-    backgroundColor: "black",
-    bottom: 30,
-    width: "90%",
-    alignSelf: "center",
-    padding: normalize(14),
-    borderRadius: 50,
-    alignItems: "center",
-    elevation: 1,
-  },
-  buttonText: {
-    color: "white",
-    fontWeight: "700",
-    fontSize: normalize(14),
-    letterSpacing: 0.8,
-  },
   icon: {
     position: "absolute",
     top: 40,
     right: 20,
-    backgroundColor: "#000000AA",
+    backgroundColor: "#000000BB",
     borderRadius: 50,
     padding: 5,
   },
