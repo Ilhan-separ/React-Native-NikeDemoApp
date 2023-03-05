@@ -1,17 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { TransitionPresets } from "@react-navigation/stack";
 
 import ProductScreen from "./screens/ProductScreen";
 import DetailsScreen from "./screens/DetailsScreen";
 import ShoppingCart from "./screens/ShoppingCartScreen";
-import { Pressable, Text } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
-
-const TransitionScreenOptions = {
-  ...TransitionPresets.SlideFromRightIOS,
-};
+import { normalize } from "./utils/scales";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,11 +27,28 @@ const Navigation = () => {
                 style={{ flexDirection: "row" }}
               >
                 <AntDesign name="shoppingcart" size={24} color="black" />
-                <Text
-                  style={{ marginLeft: 2, fontWeight: "500", fontSize: 10 }}
+                <View
+                  style={{
+                    marginLeft: 2,
+                    width: normalize(13),
+                    height: normalize(13),
+                    backgroundColor: "black",
+                    borderRadius: 50,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
-                  1
-                </Text>
+                  <Text
+                    style={{
+                      fontWeight: "500",
+                      fontSize: normalize(9),
+                      alignSelf: "center",
+                      color: "white",
+                    }}
+                  >
+                    3
+                  </Text>
+                </View>
               </Pressable>
             ),
           })}

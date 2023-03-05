@@ -6,32 +6,42 @@ import {
   FlatList,
   Pressable,
 } from "react-native";
-import products from "../data/products.js";
 import { normalize } from "../utils/scales.js";
 import { useNavigation } from "@react-navigation/native";
 
-const legendaryText =
-  " Selamın Aleyküm güzel kardeşlerim, biz burdayız hiç meraklanmayın, yapabildiklerimizin sınırı ";
+import { useSelector, useDispatch } from "react-redux";
+
+import { productsSlice } from "../store/productsSlice.js";
+
+const legendaryText = "Your potential only limited with ";
 
 const ProductScreen = () => {
   const navigation = useNavigation();
 
+  const products = useSelector((state) => state.products.products);
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.legendaryText}>
-        {legendaryText}
-        <Text style={{ fontWeight: "bold", fontStyle: "italic" }}>
-          Bizle
-        </Text>{" "}
-        sınırlıdır.
-      </Text>
       <FlatList
+        ListHeaderComponent={
+          <Text style={styles.legendaryText}>
+            {legendaryText}
+            <Text style={{ fontWeight: "bold", fontStyle: "italic" }}>
+              Yourself.
+            </Text>
+          </Text>
+        }
         showsVerticalScrollIndicator={false}
         data={products}
         numColumns={2}
         renderItem={({ item }) => (
           <Pressable
-            onPress={() => navigation.navigate("Product Details")}
+            onPress={() => {
+              dispatch(productsSlice.actions.setSelectedProduct(item.id));
+
+              navigation.navigate("Product Details");
+            }}
             style={styles.itemContainer}
           >
             <Image source={{ uri: item.image }} style={styles.image} />

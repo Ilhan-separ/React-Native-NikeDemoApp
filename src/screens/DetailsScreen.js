@@ -8,16 +8,18 @@ import {
   ScrollView,
   Pressable,
 } from "react-native";
-import products from "../data/products";
 import { normalize } from "../utils/scales";
 import { Ionicons } from "@expo/vector-icons";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import CustomButton from "../components/button";
 import { useNavigation } from "@react-navigation/native";
 
+import { useSelector } from "react-redux";
+
 const DetailsScreen = () => {
+  const product = useSelector((state) => state.products.selectedProduct);
+
   const navigation = useNavigation();
-  const product = products[0];
 
   const { width } = useWindowDimensions();
 
