@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProductScreen from "./screens/ProductScreen";
 import DetailsScreen from "./screens/DetailsScreen";
 import ShoppingCart from "./screens/ShoppingCartScreen";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, View, StyleSheet } from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
 import { normalize } from "./utils/scales";
@@ -27,27 +27,8 @@ const Navigation = () => {
                 style={{ flexDirection: "row" }}
               >
                 <AntDesign name="shoppingcart" size={24} color="black" />
-                <View
-                  style={{
-                    marginLeft: 2,
-                    width: normalize(13),
-                    height: normalize(13),
-                    backgroundColor: "black",
-                    borderRadius: 50,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontWeight: "500",
-                      fontSize: normalize(9),
-                      alignSelf: "center",
-                      color: "white",
-                    }}
-                  >
-                    3
-                  </Text>
+                <View style={styles.textContainer}>
+                  <Text style={styles.text}>3</Text>
                 </View>
               </Pressable>
             ),
@@ -74,5 +55,24 @@ const Navigation = () => {
     </NavigationContainer>
   );
 };
+
+//STYLES
+const styles = StyleSheet.create({
+  textContainer: {
+    marginLeft: 1,
+    width: normalize(13),
+    height: normalize(13),
+    backgroundColor: "black",
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  text: {
+    fontWeight: "500",
+    fontSize: normalize(9),
+    alignSelf: "center",
+    color: "white",
+  },
+});
 
 export default Navigation;

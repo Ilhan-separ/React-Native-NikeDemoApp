@@ -4,7 +4,11 @@ import cart from "../data/cart";
 import { normalize } from "../utils/scales";
 import CustomButton from "../components/button";
 
+import { useSelector } from "react-redux";
+
 const ShoppingCart = () => {
+  const cartItems = useSelector((state) => state.cart.items);
+
   const addToCard = () => {
     console.warn("Added to Card mk");
   };
@@ -12,7 +16,7 @@ const ShoppingCart = () => {
   return (
     <>
       <FlatList
-        data={cart}
+        data={cartItems}
         renderItem={({ item }) => <CartListItem cartItem={item} />}
         ListFooterComponent={ShoppingCartTotals}
       />

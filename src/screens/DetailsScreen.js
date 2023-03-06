@@ -14,19 +14,24 @@ import { useCallback, useRef, useState } from "react";
 import CustomButton from "../components/button";
 import { useNavigation } from "@react-navigation/native";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { cartSlice } from "../store/cartSlice";
+import SelectDropdown from "react-native-select-dropdown";
 
 const DetailsScreen = () => {
   const product = useSelector((state) => state.products.selectedProduct);
+  const dispatch = useDispatch();
 
   const navigation = useNavigation();
 
   const { width } = useWindowDimensions();
 
+  var size = product.sizes[0];
   const addToCard = () => {
-    console.warn("Added to Card mk");
+    dispatch(cartSlice.actions.addCartItem({ product: product, size: size }));
   };
 
+  //SLIDER
   const [index, setIndex] = useState(0);
   const indexRef = useRef(index);
   indexRef.current = index;
@@ -34,19 +39,13 @@ const DetailsScreen = () => {
     const slideSize = event.nativeEvent.layoutMeasurement.width;
     const index = event.nativeEvent.contentOffset.x / slideSize;
     const roundIndex = Math.round(index);
-
     const distance = Math.abs(roundIndex - index);
-
     const isNoMansLand = 0.4 < distance;
 
     if (roundIndex !== indexRef.current && !isNoMansLand) {
       setIndex(roundIndex);
     }
   }, []);
-
-  // useEffect(() => {
-  //   console.warn(index);
-  // }, [index]);
 
   const slideList = Array.from({ length: product.images.length }).map(
     (_, i) => {
@@ -101,6 +100,26 @@ const DetailsScreen = () => {
         <Ionicons name="close" size={24} color="white" />
       </Pressable>
 
+      <SelectDropdown
+        data={product.sizes}
+        defaultButtonText={product.sizes[0]}
+        onSelect={(selectedItem, index) => {
+          size = selectedItem;
+        }}
+        buttonTextAfterSelection={(selectedItem, index) => {
+          return selectedItem;
+        }}
+        rowTextForSelection={(item, index) => {
+          return item;
+        }}
+        dropdownOverlayColor={"transparent"}
+        dropdownStyle={dropdownStyles.dropdownStyle}
+        buttonStyle={dropdownStyles.buttonStyle}
+        buttonTextStyle={dropdownStyles.buttonTextStyle}
+        rowStyle={dropdownStyles.rowStyle}
+        rowTextStyle={dropdownStyles.rowTextStyle}
+      />
+
       <CustomButton text={"Add to Cart"} onPressed={addToCard} />
     </View>
   );
@@ -147,10 +166,47 @@ const styles = StyleSheet.create({
   icon: {
     position: "absolute",
     top: 40,
-    right: 20,
+    left: 20,
     backgroundColor: "#000000BB",
     borderRadius: 50,
     padding: 5,
+  },
+});
+
+const dropdownStyles = StyleSheet.create({
+  buttonStyle: {
+    position: "absolute",
+    backgroundColor: "black",
+    height: 48,
+    width: 48,
+    top: 30,
+    right: 20,
+    backgroundColor: "#000000BB",
+    borderRadius: 50,
+  },
+  buttonTextStyle: {
+    color: "white",
+    fontSize: 14,
+    textAlign: "center",
+    fontWeight: "600",
+  },
+  rowStyle: {
+    borderRadius: 50,
+    backgroundColor: "#000000BB",
+    height: 43,
+    width: 43,
+    borderColor: "transparent",
+    marginVertical: 5,
+  },
+  rowTextStyle: {
+    color: "white",
+    fontSize: 12,
+  },
+  dropdownStyle: {
+    backgroundColor: "transparent",
+    elevation: 0,
+    height: 500,
+    alignItems: "center",
   },
 });
 
