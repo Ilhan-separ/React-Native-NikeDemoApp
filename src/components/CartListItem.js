@@ -10,6 +10,7 @@ const CartListItem = ({ cartItem }) => {
     dispatch(
       cartSlice.actions.changeQuantity({
         productId: cartItem.product.id,
+        shoeSize: cartItem.size,
         amount: 1,
       })
     );
@@ -19,6 +20,7 @@ const CartListItem = ({ cartItem }) => {
     dispatch(
       cartSlice.actions.changeQuantity({
         productId: cartItem.product.id,
+        shoeSize: cartItem.size,
         amount: -1,
       })
     );
@@ -45,7 +47,9 @@ const CartListItem = ({ cartItem }) => {
             size={24}
             color="gray"
           />
-          <Text style={styles.itemTotal}>${cartItem.product.price},00</Text>
+          <Text style={styles.itemTotal}>
+            ${cartItem.product.price * cartItem.quantity},00
+          </Text>
         </View>
       </View>
     </View>

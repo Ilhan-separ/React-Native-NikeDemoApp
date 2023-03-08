@@ -9,9 +9,13 @@ import { Pressable, Text, View, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { normalize } from "./utils/scales";
 
+import { useSelector } from "react-redux";
+
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
+  const numberOfItems = useSelector((state) => state.cart.cartNumberOfItems);
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -27,8 +31,8 @@ const Navigation = () => {
                 style={{ flexDirection: "row" }}
               >
                 <AntDesign name="shoppingcart" size={24} color="black" />
-                <View style={styles.textContainer}>
-                  <Text style={styles.text}>3</Text>
+                <View style={numberOfItems === 0 ? {} : styles.textContainer}>
+                  <Text style={styles.text}>{numberOfItems}</Text>
                 </View>
               </Pressable>
             ),

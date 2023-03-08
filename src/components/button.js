@@ -1,10 +1,33 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text, Animated } from "react-native";
 import { normalize } from "../utils/scales";
 
 const CustomButton = ({ text, onPressed }) => {
+  const animated = new Animated.Value(1);
+  const fadeIn = () => {
+    Animated.timing(animated, {
+      toValue: 0.4,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
+  };
+  const fadeOut = () => {
+    Animated.timing(animated, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
-    <Pressable onPress={onPressed} style={styles.button}>
-      <Text style={styles.buttonText}>{text}</Text>
+    <Pressable
+      onPress={onPressed}
+      onPressIn={fadeIn}
+      onPressOut={fadeOut}
+      style={styles.button}
+    >
+      <Animated.View style={{ opacity: animated }} onPress={onPressed}>
+        <Text style={styles.buttonText}>{text}</Text>
+      </Animated.View>
     </Pressable>
   );
 };
