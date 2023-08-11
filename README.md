@@ -8,4 +8,6 @@ Demo/Clone Nike app with React Native Expo and Redux usage
 * [![Redux](https://img.shields.io/badge/Redux-764abc?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/)
 * [![Expo](https://img.shields.io/badge/Expo-000000?style=for-the-badge&logo=expo&logoColor=white)](https://expo.dev/)
 
-* <img src='./images/rn.svg' width='25' alt="reactNavigation" a="https://reactnavigation.org/">  React Navigation
+* <a href="https://reactnavigation.org/">
+<img src='./images/rn.svg' width='25' alt="reactNavigation">  
+</a> React Navigation
