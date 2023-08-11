@@ -15,7 +15,8 @@ To run this application, you'll need Expo Go app on your mobile device. You can 
 
 ## Screeshots
 
-![ss1](./images/ss_1.jpg)
-![ss2](./images/ss_2.jpg)
-![ss3](./images/ss_3.jpg)
-![ss4](./images/ss_4.jpg)
+<img src="./images/ss_1.jpg" alt="ss1" width="200"/>
+<img src="./images/ss_2.jpg" alt="ss2" width="200"/>
+<img src="./images/ss_3.jpg" alt="ss3" width="200"/>
+<img src="./images/ss_4.jpg" alt="ss4" width="200"/>
+
