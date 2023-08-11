@@ -22,3 +22,5 @@ To run this application, you'll need Expo Go app on your mobile device. You can 
   <img src="./images/ss_4.jpg" alt="ss4" width="250"/>
 </p>
 
+## Acknowledgments
+[notJustDev](https://www.notjust.dev/)
